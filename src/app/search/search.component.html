@@ -1,0 +1,20 @@
+
+  <header id="search-component" class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row mx-auto">
+        <div class="col-lg-6">
+          <input #searchBox class="form-control form-control-lg" type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+        <div class="col-lg-2">
+          <button type="submit" (click)="search(searchBox.value)" class="btn btn-block btn-lg btn-primary">Search!</button>
+        </div>
+      </div>
+    </div>
+  </header>
