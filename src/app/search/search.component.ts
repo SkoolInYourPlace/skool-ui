@@ -1,3 +1,4 @@
+import { School } from './../models/School';
 import { Component, OnInit } from '@angular/core';
 import { SchoolServiceService } from './../services/school-service.service';
 import { FormControl } from '@angular/forms';
@@ -18,8 +19,9 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three', 'four', 'five', 'six'];
-  filteredOptions: Observable<string[]>;
+  options: String[] = [];
+  //  = ['One', 'Two', 'Three', 'four', 'five', 'six'];
+  filteredOptions: Observable<String[]>;
 
   constructor(
     private schoolService: SchoolServiceService
@@ -27,6 +29,11 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.schoolService.getAll().subscribe((schools: School[]) => {
+      schools.forEach((school: School) => {
+        this.options.push(school.schoolName);
+      });
+    });
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -44,7 +51,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): String[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));

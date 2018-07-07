@@ -10,8 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { NavbarComponent } from './navbar/navbar.component';
-
-
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -119,9 +117,3 @@ export class DemoMaterialModule { }
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// RouterModule.forRoot(
-//   [
-//     { path: "", component: SearchComponent}
-//   ]
-// )
